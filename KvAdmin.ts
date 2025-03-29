@@ -1,6 +1,7 @@
 /**
  * KvAdmin is a utility class for managing Deno KV storage.
  * It provides methods for common operations such as dumping, listing, retrieving, setting, deleting, and restoring data.
+ * @module
  */
 export class KvAdmin {
   private static instance: KvAdmin;

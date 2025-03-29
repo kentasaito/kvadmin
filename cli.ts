@@ -3,6 +3,7 @@
 /**
  * CLI tool for managing Deno KV storage.
  * This script provides commands for dumping, listing, retrieving, setting, deleting, clearing, and restoring data in a Deno KV database.
+ * @module
  */
 
 import { KvAdmin } from "./KvAdmin.ts";
