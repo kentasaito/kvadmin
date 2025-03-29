@@ -14,7 +14,7 @@ KvAdmin
   Installation
     To install KvAdmin globally, run the following command:
       <pre>
-        deno install -grf --allow-read --allow-write --unstable-kv --config deno.json https://raw.githubusercontent.com/kentasaito/kvadmin/refs/heads/main/cli.ts -n kvadmin
+        deno install -grf --allow-read --allow-write --unstable-kv jsr:@kenta/kvadmin/cli -n kvadmin
       </pre>
 
     After installation, you can use the `kvadmin` command globally:

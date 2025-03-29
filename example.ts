@@ -1,7 +1,7 @@
-import { KvAdmin } from "https://raw.githubusercontent.com/kentasaito/kvadmin/refs/heads/main/KvAdmin.ts";
+import { KvAdmin } from "jsr:@kenta/kvadmin";
 
 const kvadmin = await KvAdmin.getInstance("./data.db");
-await kvadmin.set(["myKey"], {"name": "John", "age": 30});
+await kvadmin.set(["myKey"], { "name": "John", "age": 30 });
 console.log(await kvadmin.get(["myKey"]));
 await kvadmin.dump("dump.json");
 await kvadmin.delete(["myKey"]);
