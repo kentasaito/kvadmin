@@ -12,20 +12,20 @@ KvAdmin
     - Deno 1.35.0 or higher
 
   Installation
-    1. Clone this project
+    To install KvAdmin globally, run the following command:
       <pre>
-        git clone https://github.com/your-username/kvadmin.git
+        deno install -grf --allow-read --allow-write --unstable-kv --config deno.json https://raw.githubusercontent.com/kentasaito/kvadmin/refs/heads/main/cli.ts -n kvadmin
       </pre>
 
-    2. Navigate to the project directory
+    After installation, you can use the `kvadmin` command globally:
       <pre>
-        cd kvadmin
+        kvadmin PATH [subcommand]
       </pre>
 
   Usage
     Run the following command to execute `kvadmin`
     <pre>
-      deno run --allow-read --allow-write --unstable-kv cli.ts PATH [subcommand]
+      kvadmin PATH [subcommand]
     </pre>
 
   Subcommands
@@ -51,24 +51,39 @@ KvAdmin
       Restores the database from a dump file.
 
   Examples
-    1. Dump the database
+    Set a value for a key
       <pre>
-        deno run --allow-read --allow-write --unstable-kv cli.ts ./data.db dump dump.json
+        kvadmin ./data.db set myKey '{"name": "John", "age": 30}'
       </pre>
 
-    2. List all entries in the database
+    Retrieve the value of a key
       <pre>
-        deno run --allow-read --allow-write --unstable-kv cli.ts ./data.db list
+        kvadmin ./data.db get myKey
       </pre>
 
-    3. Retrieve the value of a key
+    Dump the database
       <pre>
-        deno run --allow-read --allow-write --unstable-kv cli.ts ./data.db get myKey
+        kvadmin ./data.db dump dump.json
       </pre>
 
-    4. Set a value for a key
+    Delete a key
       <pre>
-        deno run --allow-read --allow-write --unstable-kv cli.ts ./data.db set myKey '{"name": "John", "age": 30}'
+        kvadmin ./data.db delete myKey
+      </pre>
+
+    Clear the database
+      <pre>
+        kvadmin ./data.db clear
+      </pre>
+
+    Restore the database from a dump file
+      <pre>
+        kvadmin ./data.db restore dump.json
+      </pre>
+
+    List all entries in the database
+      <pre>
+        kvadmin ./data.db list
       </pre>
 
   License

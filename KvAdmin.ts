@@ -1,4 +1,4 @@
-export default class KvAdmin {
+export class KvAdmin {
   private static instance: KvAdmin;
   private Kv: Deno.Kv | undefined;
 
@@ -19,7 +19,7 @@ export default class KvAdmin {
     }
   }
 
-  public async dump(filename: string, prefix: string[]): Promise<void> {
+  public async dump(filename: string, prefix: string[] = []): Promise<void> {
     this.ensureInitialized();
     const entries = [];
     const iterator = this.Kv!.list({ prefix });
@@ -54,7 +54,6 @@ export default class KvAdmin {
   }
 
   public async set(key: string[], value: object): Promise<boolean> {
-    console.log({ key, value });
     this.ensureInitialized();
     return (await this.Kv!.set(key, value)).ok;
   }

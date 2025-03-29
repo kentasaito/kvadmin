@@ -1,6 +1,6 @@
 #!/usr/bin/env -S deno run --allow-read --allow-write --unstable-kv
 
-import KvAdmin from "./KvAdmin.ts";
+import { KvAdmin } from "./KvAdmin.ts";
 
 function help() {
   console.error("Usage: kvadmin PATH [subcommand]");
