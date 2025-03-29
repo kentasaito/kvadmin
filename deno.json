@@ -1,0 +1,7 @@
+{
+  "lock": false,
+  "exports": {
+    "./": "./KvAdmin.ts",
+    "./cli": "./cli.ts"
+  }
+}

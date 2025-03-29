@@ -1,0 +1,75 @@
+KvAdmin
+
+  KvAdmin is a CLI tool for managing Deno KV storage. This tool allows you to easily perform operations such as dumping, listing, retrieving, setting, deleting, clearing, and restoring the database.
+
+  Features
+    - Simplifies management of Deno KV storage
+    - Supports database dump and restore functionality
+    - Key-value operations (get, set, delete)
+    - Clear the entire database
+
+  Requirements
+    - Deno 1.35.0 or higher
+
+  Installation
+    1. Clone this project
+      <pre>
+        git clone https://github.com/your-username/kvadmin.git
+      </pre>
+
+    2. Navigate to the project directory
+      <pre>
+        cd kvadmin
+      </pre>
+
+  Usage
+    Run the following command to execute `kvadmin`
+    <pre>
+      deno run --allow-read --allow-write --unstable-kv cli.ts PATH [subcommand]
+    </pre>
+
+  Subcommands
+    dump <filename> [prefix]
+      Dumps the database to the specified file.
+
+    list [prefix]
+      Lists all entries in the database.
+
+    get <key>
+      Retrieves the value of the specified key.
+
+    set <key> <value>
+      Sets the value for the specified key.
+
+    delete <key>
+      Deletes the specified key.
+
+    clear
+      Clears the entire database.
+
+    restore <filename>
+      Restores the database from a dump file.
+
+  Examples
+    1. Dump the database
+      <pre>
+        deno run --allow-read --allow-write --unstable-kv cli.ts ./data.db dump dump.json
+      </pre>
+
+    2. List all entries in the database
+      <pre>
+        deno run --allow-read --allow-write --unstable-kv cli.ts ./data.db list
+      </pre>
+
+    3. Retrieve the value of a key
+      <pre>
+        deno run --allow-read --allow-write --unstable-kv cli.ts ./data.db get myKey
+      </pre>
+
+    4. Set a value for a key
+      <pre>
+        deno run --allow-read --allow-write --unstable-kv cli.ts ./data.db set myKey '{"name": "John", "age": 30}'
+      </pre>
+
+  License
+    This project is licensed under the MIT License.
