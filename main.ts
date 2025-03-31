@@ -7,16 +7,12 @@ const app = new Hono();
 
 app.get(
   "/",
-  (c: Context) => c.html(`<img src="/avatar.png">`),
+  (c: Context) => c.html(`<img src="/files/avatar.png">`),
 );
 
 app.get(
-  "/avatar.png",
-  async (c: Context) => c.body(await kvAdmin.getFile(["files", "avatar.png"]), {
-    headers: {
-      'Content-Type': 'image/png', // 画像のMIMEタイプを指定
-    }
-  }),
+  "/files/avatar.png",
+  async (c: Context) => await kvAdmin.file(c, c.req.path.split("/").slice(1)),
 );
 
 Deno.serve(app.fetch);

@@ -1,3 +1,6 @@
+import { contentType } from "media_types";
+import type { Context } from "hono";
+
 /**
  * KvAdmin is a utility class for managing Deno KV storage.
  * It provides methods for common operations such as dumping, listing, retrieving, setting, deleting, and restoring data.
@@ -9,6 +12,14 @@ export class KvAdmin {
 
   private constructor() {
     // Private constructor to enforce singleton pattern
+  }
+
+  public async file(c: Context, key: string[]) {
+    return c.body(await this.getFile(key), {
+      headers: {
+        'Content-Type': contentType(key.slice(-1)[0].split('.').pop() ?? "") ?? "", // 画像のMIMEタイプを指定
+      }
+    });
   }
 
   /**

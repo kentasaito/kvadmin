@@ -8,6 +8,7 @@
     "./cli": "./cli.ts"
   },
   "imports": {
-    "hono": "jsr:@hono/hono@^4.7.5"
+    "hono": "jsr:@hono/hono@^4.7.5",
+    "media_types": "jsr:@std/media-types@1.1.0"
   }
 }
