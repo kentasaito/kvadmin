@@ -1,3 +1,4 @@
+import { contentType } from "media_types";
 import { KvAdmin } from "./KvAdmin.ts";
 import { type Context, Hono } from "hono";
 
@@ -12,7 +13,15 @@ app.get(
 
 app.get(
   "/files/avatar.png",
-  async (c: Context) => await kvAdmin.file(c, c.req.path.split("/").slice(1)),
+  async (c: Context) => {
+    const key = c.req.path.split("/").slice(1);
+    return c.body(await kvAdmin.getFile(key), {
+      headers: {
+        "Content-Type": contentType(key.slice(-1)[0].split(".").pop() ?? "") ??
+          "", // 画像のMIMEタイプを指定
+      },
+    });
+  },
 );
 
 Deno.serve(app.fetch);
