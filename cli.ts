@@ -18,6 +18,8 @@ function help() {
   console.error("    list        list all entries in the database");
   console.error("    get         get an entry from the database");
   console.error("    set         set an entry in the database");
+  console.error("    getFile     retrieve binary data of a key and save it to a file");
+  console.error("    setFile     store a file's contents in the database under a key");
   console.error("    delete      delete an entry from the database");
   console.error("    clear       clear the database");
   console.error("    restore     restore the database from a file");
@@ -68,11 +70,15 @@ async function main() {
     }
     case "getFile": {
       /**
-       * Retrieves the value of a specific key.
-       * Usage: kvadmin PATH get [key] [path]
+       * Retrieves the binary data of a specific key and writes it to a file.
+       * This is useful for extracting file contents stored in the KV storage.
+       * Usage: kvadmin PATH getFile [key] [path]
+       *
+       * [key]  - The key to retrieve the binary data for.
+       * [path] - The path to save the retrieved file.
        */
       const path = Deno.args.pop();
-      Deno.writeFile(path ?? "", await admin.get(Deno.args) as Uint8Array);
+      Deno.writeFile(path ?? "", await admin.getFile(Deno.args));
       break;
     }
     case "set": {
@@ -90,8 +96,12 @@ async function main() {
     }
     case "setFile": {
       /**
-       * Sets a value for a specific key.
+       * Stores the contents of a file in the KV storage under a specific key.
+       * Reads the file from the specified path and saves it as binary data.
        * Usage: kvadmin PATH setFile [key] [path]
+       *
+       * [key]  - The key to associate with the file data.
+       * [path] - The path to the file to be stored.
        */
       if (Deno.args.length < 2) {
         console.error("Usage: kvadmin PATH setFile [key] [path]");

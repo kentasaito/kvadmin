@@ -51,6 +51,12 @@ kvadmin PATH [subcommand]
     set <key> <value>
       Sets the value for the specified key.
 
+    getFile <key> <path>
+      Retrieves the binary data of the specified key and saves it to the specified file.
+
+    setFile <key> <path>
+      Stores the contents of a file in the database under the specified key.
+
     delete <key>
       Deletes the specified key.
 
@@ -72,6 +78,18 @@ kvadmin ./data.db set myKey '{"name": "John", "age": 30}'
 
 <pre>
 kvadmin ./data.db get myKey
+</pre>
+
+    Retrieve binary data of a key and save it to a file
+
+<pre>
+kvadmin ./data.db getFile myKey ./output.bin
+</pre>
+
+    Store a file's contents in the database under a key
+
+<pre>
+kvadmin ./data.db setFile myKey ./input.bin
 </pre>
 
     Dump the database

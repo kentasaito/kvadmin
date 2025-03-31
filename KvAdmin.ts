@@ -89,10 +89,11 @@ export class KvAdmin {
   }
 
   /**
-   * Retrieves the value associated with the given key.
+   * Retrieves the binary data associated with the given key.
+   * This method is intended for retrieving file contents stored in the KV storage.
    *
-   * @param key - The key to retrieve the value for.
-   * @returns A promise that resolves to the value of the key.
+   * @param key - The key to retrieve the binary data for.
+   * @returns A promise that resolves to the binary data as a Uint8Array.
    */
   public async getFile(key: string[]): Promise<Uint8Array> {
     this.ensureInitialized();
@@ -113,10 +114,11 @@ export class KvAdmin {
   }
 
   /**
-   * Sets a value for the given key in the KV storage.
+   * Stores the contents of a file in the KV storage under the given key.
+   * Reads the file from the specified path and saves it as binary data.
    *
-   * @param key - The key to set the value for.
-   * @param value - The value to set.
+   * @param key - The key to associate with the file data.
+   * @param path - The path to the file to be stored.
    * @returns A promise that resolves to a boolean indicating success.
    */
   public async setFile(key: string[], path: string): Promise<boolean> {
