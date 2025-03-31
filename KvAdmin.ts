@@ -89,6 +89,18 @@ export class KvAdmin {
   }
 
   /**
+   * Retrieves the value associated with the given key.
+   *
+   * @param key - The key to retrieve the value for.
+   * @returns A promise that resolves to the value of the key.
+   */
+  public async getFile(key: string[]): Promise<object> {
+    this.ensureInitialized();
+    const entry = await this.Kv!.get(key);
+    return entry.value;
+  }
+
+  /**
    * Sets a value for the given key in the KV storage.
    *
    * @param key - The key to set the value for.
@@ -98,6 +110,18 @@ export class KvAdmin {
   public async set(key: string[], value: object): Promise<boolean> {
     this.ensureInitialized();
     return (await this.Kv!.set(key, value)).ok;
+  }
+
+  /**
+   * Sets a value for the given key in the KV storage.
+   *
+   * @param key - The key to set the value for.
+   * @param value - The value to set.
+   * @returns A promise that resolves to a boolean indicating success.
+   */
+  public async setFile(key: string[], path: string): Promise<boolean> {
+    this.ensureInitialized();
+    return (await this.Kv!.set(key, await Deno.readFile(path))).ok;
   }
 
   /**

@@ -66,6 +66,15 @@ async function main() {
       console.log(JSON.stringify(await admin.get(Deno.args), null, 2));
       break;
     }
+    case "getFile": {
+      /**
+       * Retrieves the value of a specific key.
+       * Usage: kvadmin PATH get [key] [path]
+       */
+      const path = Deno.args.pop();
+      Deno.writeFile(path, await admin.get(Deno.args));
+      break;
+    }
     case "set": {
       /**
        * Sets a value for a specific key.
@@ -77,6 +86,19 @@ async function main() {
       }
       const value = JSON.parse(Deno.args.pop() as string);
       Deno.exit(await admin.set(Deno.args, value) ? 0 : 1);
+      break;
+    }
+    case "setFile": {
+      /**
+       * Sets a value for a specific key.
+       * Usage: kvadmin PATH setFile [key] [path]
+       */
+      if (Deno.args.length < 2) {
+        console.error("Usage: kvadmin PATH setFile [key] [path]");
+        Deno.exit(1);
+      }
+      const path = Deno.args.pop();
+      Deno.exit(await admin.setFile(Deno.args, path) ? 0 : 1);
       break;
     }
     case "delete": {

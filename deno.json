@@ -6,5 +6,8 @@
   "exports": {
     ".": "./KvAdmin.ts",
     "./cli": "./cli.ts"
+  },
+  "imports": {
+    "hono": "jsr:@hono/hono@^4.7.5"
   }
 }
