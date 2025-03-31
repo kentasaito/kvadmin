@@ -94,10 +94,10 @@ export class KvAdmin {
    * @param key - The key to retrieve the value for.
    * @returns A promise that resolves to the value of the key.
    */
-  public async getFile(key: string[]): Promise<object> {
+  public async getFile(key: string[]): Promise<Uint8Array> {
     this.ensureInitialized();
     const entry = await this.Kv!.get(key);
-    return entry.value;
+    return entry.value as Uint8Array;
   }
 
   /**

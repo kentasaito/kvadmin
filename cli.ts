@@ -72,7 +72,7 @@ async function main() {
        * Usage: kvadmin PATH get [key] [path]
        */
       const path = Deno.args.pop();
-      Deno.writeFile(path, await admin.get(Deno.args));
+      Deno.writeFile(path ?? "", await admin.get(Deno.args) as Uint8Array);
       break;
     }
     case "set": {
@@ -98,7 +98,7 @@ async function main() {
         Deno.exit(1);
       }
       const path = Deno.args.pop();
-      Deno.exit(await admin.setFile(Deno.args, path) ? 0 : 1);
+      Deno.exit(await admin.setFile(Deno.args, path ?? "") ? 0 : 1);
       break;
     }
     case "delete": {
