@@ -2,7 +2,7 @@ import { contentType } from "media_types";
 import { KvAdmin } from "./KvAdmin.ts";
 import { type Context, Hono } from "hono";
 
-const kvAdmin = await KvAdmin.getInstance("../kv.sqlite3");
+const kvadmin = await KvAdmin.getInstance("./data.db");
 
 const app = new Hono();
 

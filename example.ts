@@ -8,3 +8,4 @@ await kvadmin.delete(["myKey"]);
 await kvadmin.clear();
 await kvadmin.restore("dump.json");
 console.log(await kvadmin.list());
+await kvadmin.setFile(["files", "avatar.png"], "./avatar.png");
